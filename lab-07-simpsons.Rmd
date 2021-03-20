@@ -80,6 +80,7 @@ ggplot(Whickham, aes(x = age)) +
 4 Before plotting the correlation between smoking status and health outcomes.I would like to assume there is a strong correlation between the two.based on the well-known impact of smoking on the health.
 
 ```{r plot_smokeVSincome_1}
+
 ```
 
 Knit, commit, and push to github.
@@ -87,8 +88,20 @@ Knit, commit, and push to github.
 5. 
 
 ```{r plot_smokeVSincome_2}
+Whickham %>%
+  count(smoker, outcome) %>%
+  group_by(smoker) %>%
+  mutate(prop_outcome = n / sum(n)) %>%
+  filter(outcome=="Dead")
+
+ggplot(Whickham, aes(x=smoker, fill=outcome)) + 
+  geom_bar(position = "fill") + labs(y="Proportion") +
+  theme_dark()
+
 
 ```
+ Insights: First, what the data shows is unrealistic.but the data never lies, and we should always belive it.the data shows that people who smokes are more likely to live longer than the people who dont.we need to investigate the data further. 
+
 
 
 
@@ -97,12 +110,24 @@ Knit, commit, and push to github.
 
 ```{r age_cat}
 
+Whickham <- Whickham%>% mutate (age_cat = case_when (age <= 44 ~ "18-44", age > 44. & age <= 64 ~ "45-64", age > 64 ~ "65+"))
+
 ```
 
 7. 
 
 ```{r plot_smokeVSincome_3}
 
+ggplot(Whickham, aes(x=smoker, fill=outcome)) + geom_bar(position = "fill") + 
+  labs(y="Proportion") + facet_grid(. ~ age_cat) + theme_dark()
+
 ```
+
+# Observations: 
+
+ by distributing the data by age group we find people who smoke are more likely to die sooner than the people who don't
+- Smoking has a negitive impact on humen health. 
+- The impact of smoking does'nt greatly effect the human health until the late 60's.
+
 
 Knit, commit, and push to github.
