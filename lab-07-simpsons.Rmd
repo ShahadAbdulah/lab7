@@ -77,10 +77,9 @@ ggplot(Whickham, aes(x = age)) +
 ```
 
 
-4. I expect the health will be worser and may be the person will be died after while , if he keeping smoke 
+4 Before plotting the correlation between smoking status and health outcomes.I would like to assume there is a strong correlation between the two.based on the well-known impact of smoking on the health.
 
 ```{r plot_smokeVSincome_1}
-ggplot(data=Whickham, aes(x=smoker, y=outcome, color=outcome)) + geom_bar(stat="identity") 
 ```
 
 Knit, commit, and push to github.
@@ -88,11 +87,13 @@ Knit, commit, and push to github.
 5. 
 
 ```{r plot_smokeVSincome_2}
-Whickham %>%
-  count(smoker, outcome)
+
 ```
 
+
+
 6.
+
 
 ```{r age_cat}
 
